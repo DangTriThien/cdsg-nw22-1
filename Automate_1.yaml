@@ -16,3 +16,10 @@ jobs:
       - name: Update files
         run: |
 
+
+      - name: Commit and push changes
+        run: |
+          git add .
+          git config --global user.name 'Nhom1'
+          git commit -m "Auto update data" || echo "No changes to commit"
+          git push
