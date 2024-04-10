@@ -1,0 +1,35 @@
+name: Automate
+
+on:
+  push:
+    branches: [ main ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v2
+
+    - name: Set worrking directory
+      run: cd Automate-1
+
+    - name: Check Data.local
+      run: |
+        if grep -q "apache" Data.local; then
+          echo "Found 'apache' in data.local"
+        else
+          echo "Did not find 'apache' in Data.txt"
+          echo "apache" >> Data.txt  # Tự động cập nhật nếu cần
+        fi
+
+    - name: Check Config.conf
+      run: |
+        if grep -q "nhom1.vn" Config.conf; then
+          echo "Found 'nhom1.vn' in Config.conf"
+        else
+          echo "Did not find 'nhom1.vn' in Config.conf"
+          echo "nhom1.vn" >> Config.cfg  # Tự động cập nhật nếu cần
+        fi
+
